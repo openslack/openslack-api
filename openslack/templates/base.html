@@ -1,0 +1,236 @@
+{% load url from future %}
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
+<head lang="zh-CN">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="renderer" content="webkit"/>
+<title>{% block title %}OpenSlack-最专业的IT搜索定制平台{% endblock %}</title>
+<meta content="{% block description %}OpenSlack是中国IT人定制搜索网站,定制你的个人搜索引擎尽在OpenSlack{% endblock %}" name="description">
+<meta content="{% block keywords %}大数据,云计算,java,python,go,.net,linux,php,c,c++,ruby{% endblock %}" name="keywords">
+<meta name="author" content="李飞飞 <admin@yueguangba.com>"/>
+{% block meta %}{% endblock %}
+<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+<link rel="stylesheet" href="{% static 'resources/bootstrap-3.3.5/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'resources/flat-ui-2.2.2/css/flat-ui.min.css' %}"/>
+<style>
+	.footer { margin:0px; background-color: #2a2a2a; text-align: center;padding:30px;margin-top:40px; clear: both;}
+    .footer_nav_out {display:inline-block;border-bottom: 1px solid #4d4d4d;padding:0px 50px;}
+    .footer_nav { display: inline-block; color: #9e9e9e;padding:10px 50px; vertical-align: top;}
+    .footer_nav li{ font-size: 14px;text-align: left;line-height: 30px;}
+    .footer_nav li a{ color: #9e9e9e;}
+    .footer_nav li a:hover{ opacity: .9;}
+    .footer_nav .title{ font-size: 18px;}
+    .footer .copyright { color: #787878;font-size: 12px;margin-top: 30px;}
+    .footer .copyright img { margin-left:6px;margin-right:6px;margin-top:-10px;}
+    .footer .copyright span { color: #57dfc7;}
+    .footer .copyright span.phone_large { font-size: 20px;}
+    ul,ol{list-style: none;margin:0;padding:0}
+    .navbar{
+        margin-bottom: 0px;
+    }
+    .background-gradient{
+        background:-webkit-linear-gradient(90deg, rgb(21, 37, 53),rgb(60, 175, 170));
+        background:linear-gradient(90deg, rgb(21, 37, 53),rgb(60, 175, 170));
+    }
+    .content-title-1{
+        padding:15px 0px 10px;
+        font-size:16px;
+        border-bottom:1px solid #d7dee0;
+    }
+    .tips{
+        color:#ff0000;
+    }
+    .pagination-self>ul{display: inline-block;margin-top:20px;}
+    .pagination-self>ul>li{display: inline-block;margin:0px 8px 0px 0px;}
+    .pagination-self>ul>li>a{font-size:17px;display: inline-block;color:#bbb;padding:1px 8px;font-family: "Arial";}
+    .pagination-self>ul>li>a:active,.pagination-self>ul>li>a:hover{color:#fff;background-color: #00d3d4}
+    .pagination-self>ul>li>a.active{color:#fff;background-color: #00d3d4}
+    .content-1-div-1{
+        padding:0 0;
+    }
+    .content-1-div-2{
+        padding:0;
+    }
+    .content-1-div-2>ul>li>h6,p{
+
+        margin:0;padding:0;font-weight: normal;line-height:1;
+    }
+    .content-1-div-2>ul>li{
+
+       padding:0px 0px 0px 15px;;
+    }
+    .content-1-div-2>ul>li>h6{
+        color:#000000;
+        font-size:16px;
+        margin-bottom: 10px;
+    }
+    .content-1-div-2>ul>li>p{
+        /*width:615px;*/
+        text-overflow:ellipsis;
+        overflow:hidden;
+        line-height: 24px;
+        max-height:48px;
+        text-overflow:ellipsis;
+
+    }
+    .p1{
+        font-size:15px;
+        color:#777;
+        height:48px;
+    }
+    .search-strong{
+        color:#00d3d4;
+    }
+    .p2{
+        color:#969696;
+        font-size:15px;
+    }
+    .p3{
+        color:#ff0000;
+        font-size:15px;
+    }
+    .content{
+        overflow:hidden;border-bottom:1px solid #d7dee0;padding-bottom:27px;padding-top:27px;
+    }
+    .content:last-child{
+        overflow:hidden;padding-bottom:20px;border:none
+    }
+    .list-inline>li{
+        margin-bottom:8px;
+    }
+    .list-inline>li>a{
+        border:1px solid #ddd;padding:2px 15px;background-color: #fff;color:#969696;border-radius:16px;font-size:14px;
+    }
+    .post-tag {
+        color: #566e76;
+        font-size: 12px;
+        white-space: nowrap;
+        background: #e4edf4;
+        border: 1px solid #e4edf4;
+        display: inline-block;
+        margin: 2px 2px 2px 0;
+        border-radius: 0;
+        padding: .4em .5em;
+        text-decoration: none;
+        text-align: center;
+        line-height: 1;
+    }
+    .tags {
+        line-height: 18px;
+        float: left;
+    }
+    .tags a {
+        color: #07c;
+    }
+</style>
+</head>
+
+<body>
+<nav role="navigation" class="navbar navbar-default" style="font-size:15px !important;">
+    <div class="navbar-header" style="margin-right:5%;margin-left:5%;">
+        <a href="#" class="navbar-brand">
+            OpenSlack
+        </a>
+    </div>
+    <div class="collapse navbar-collapse" style="margin-right:5%">
+        <ul class="nav navbar-nav" style="margin-right:5%">
+            <li class="active">
+                <a href="/">首页</a>
+            </li>
+            <li>
+               <a href="http://news.openslack.com" title="资讯">业界</a>
+            </li>
+            <li>
+                <a href="http://qa.openslack.com">问答</a>
+            </li>
+            <li>
+               <a href="http://blog.openslack.com" title="博客">博客</a>
+            </li>
+            <li>
+               <a href="http://hall.openslack.com" title="名人名文">名人</a>
+            </li>
+            <li>
+               <a href="http://resource.openslack.com" title="资源">资源</a>
+            </li>
+            <li>
+               <a href="http://company.openslack.com" title="公司">公司</a>
+            </li>
+            <li>
+               <a href="http://project.openslack.com" title="项目">项目</a>
+            </li>
+            <li>
+               <a href="http://site.openslack.com" title="站点">站点</a>
+            </li>
+            <li>
+               <a href="http://weixin.openslack.com" title="站点">微信</a>
+            </li>
+            <li>
+               <a href="http://weibo.openslack.com" title="站点">微博</a>
+            </li>
+            <li>
+               <a href="{% url 'slack_home' %}" title="小组">小组</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="{% url 'userena_signin' %}" rel="nofollow">登录</a>
+            </li>
+            <li>
+                <a href="{% url 'userena_signup' %}" rel="nofollow">注册</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    {% block container %}
+    
+    {% endblock %}
+<div class="jumbotron footer">
+    <div class="footer_nav_out">
+        <ul class="footer_nav">
+            <li class="title">首页</li>
+{#            <li><a href="/console/main.html">控制台</a></li>#}
+        </ul>
+
+        <ul class="footer_nav">
+            <li class="title">分类</li>
+{#            <li><a href="/product.html">产品介绍</a></li>#}
+        </ul>
+        <ul class="footer_nav">
+            <li class="title">API</li>
+{#            <li><a href="/get-start.html">新手入门</a></li>#}
+        </ul>
+        <ul class="footer_nav">
+            <li class="title">定制</li>
+{#            <li><a href="">查看新贴</a></li>#}
+        </ul>
+        <ul class="footer_nav">
+            <li class="title">关于</li>
+{#            <li><a href="/aboutus.htm">关于我们</a></li>#}
+        </ul>
+    </div>
+    <p class="copyright"><a href="/" class="copyright" target="_blank">OpenSlack</a>&nbsp;&nbsp;<span class="phone_large">openslack.com</span>&nbsp;&nbsp;<span>admin@openslack.com</span></p>
+</div>
+{% for js in js_path %}
+    <script type="text/javascript" src="{% static ''%}modules/{{ js }}.js"></script>
+{% endfor %}
+
+{% for style in style_path %}
+    <link rel="stylesheet" type="text/css" href="{% static ''%}modules/{{ style }}.css"/>
+{% endfor %}
+    {% block style %}
+
+    {% endblock %}
+
+<script src="{% static 'resources/flat-ui-2.2.2/js/vendor/jquery.min.js' %}"></script>
+<script src="{% static 'resources/bootstrap-3.3.5/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'resources/flat-ui-2.2.2/js/flat-ui.min.js' %}"></script>
+    {% block script %}
+
+    {% endblock %}
+
+</body>
+</html>
